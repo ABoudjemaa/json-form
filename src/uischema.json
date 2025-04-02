@@ -17,6 +17,16 @@
         }
       ],
       "label": "My User"
+    },
+    {
+      "type": "Group",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/item/properties/s01"
+        }
+      ],
+      "label": "Profile"
     }
   ]
 }

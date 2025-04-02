@@ -5,18 +5,38 @@ import schema from './schema.json'
 import uischema from './uischema.json'
 import TextControl from './components/TextControl'
 import textControlTester from "./components/textControlTester";
+import CheckboxGroupControl from "./components/CheckboxGroupControl";
+import CheckboxGroupControlTester from "./components/CheckboxGroupControlTester";
+
+const initialData = {
+  user: {
+    a08: "John Doe",
+    a09: "Experienced in React, TypeScript and UI development"
+  },
+  item: {
+    s01: ["vendor", "subcontractor"],
+    p02: "no",
+    i01: [
+      { country: "France", percent: 60 },
+      { country: "Germany", percent: 30 },
+      { country: "United Kingdom of Great Britain and Northern Ireland", percent: 10 }
+    ]
+  }
+};
 
 function App() {
-  const [data, setData] = useState();
+  const [data, setData] = useState(initialData);
   const [errors, setErrors] = useState();
-  console.log("data", data);
-  console.log("errors", errors);
+  console.log("data", data.item.s01);
+  // console.log("errors", errors);
   const renderers = [
     ...vanillaRenderers,
     { tester: textControlTester, renderer: TextControl },
+    { tester: CheckboxGroupControlTester, renderer: CheckboxGroupControl },
   ];
+
   return (
-    <div className='max-w-2xl m-auto mt-10'>
+    <div className='max-w-2xl mx-4 md:m-auto md:mt-10'>
       <JsonForms
         schema={schema}
         uischema={uischema}
