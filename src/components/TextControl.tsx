@@ -11,7 +11,7 @@ const CustomTextRenderer = (props: RendererProps) => {
   const isMultiLine = uischema.options?.multi;
 
   return (  
-    <div className="mb-4">
+    <div className="mb-4"> 
       {isMultiLine ? (
         <div className="w-full">
           <label className="block text-gray-700 font-semibold mb-2">{label}</label>
