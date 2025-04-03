@@ -5,4 +5,4 @@
 - [ ] add the error component
 - [ ] style correctly the percentage validation
 - [ ] separate the tow parts of the form
-- [ ] add initial-data.json file
+- [x] add initial-data.json file

@@ -3,6 +3,7 @@ import { JsonForms } from "@jsonforms/react"
 import { vanillaCells, vanillaRenderers } from '@jsonforms/vanilla-renderers';
 import schema from './schema.json'
 import uischema from './uischema.json'
+import initialData from './initial-json.json'
 import TextControl from './components/json-form/TextControl'
 import textControlTester from "./components/json-form/testers/textControlTester";
 import CheckboxGroupControlTester from "./components/json-form/testers/checkboxGroupControlTester";
@@ -10,27 +11,12 @@ import countriesControlTester from "./components/json-form/testers/countriesCont
 import CountriesControl from "./components/json-form/countries-section/CountriesControl";
 import CheckboxGroupControl from "./components/json-form/checkbox-section/CheckboxGroupControl";
 
-const initialData = {
-  user: {
-    a08: "John Doe",
-    a09: "Experienced in React, TypeScript and UI development"
-  },
-  item: {
-    s01: ["vendor", "subcontractor"],
-    p02: "no",
-    i01: [
-      { country: "France", percent: 60 },
-      { country: "Germany", percent: 30 },
-      { country: "United Kingdom of Great Britain and Northern Ireland", percent: 10 }
-    ]
-  }
-};
 
 function App() {
   const [data, setData] = useState(initialData);
   const [errors, setErrors] = useState();
   // console.log("data", data.item.s01);
-  console.log("errors", errors);
+  // console.log("errors", errors);
   const renderers = [
     ...vanillaRenderers,
     { tester: textControlTester, renderer: TextControl },
