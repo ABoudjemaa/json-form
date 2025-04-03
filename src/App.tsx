@@ -8,7 +8,7 @@ import textControlTester from "./components/json-form/testers/textControlTester"
 import CheckboxGroupControl from "./components/json-form/CheckboxGroupControl";
 import CheckboxGroupControlTester from "./components/json-form/testers/checkboxGroupControlTester";
 import countriesControlTester from "./components/json-form/testers/countriesControlTester";
-import CountriesControl from "./components/json-form/CountriesControl";
+import CountriesControl from "./components/json-form/contries-section/CountriesControl";
 
 const initialData = {
   user: {
