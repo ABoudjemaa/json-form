@@ -24,6 +24,10 @@
         {
           "type": "Control",
           "scope": "#/properties/item/properties/s01"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/item/properties/i01"
         }
       ],
       "label": "Profile"

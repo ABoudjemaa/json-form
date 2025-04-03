@@ -6,7 +6,9 @@ import uischema from './uischema.json'
 import TextControl from './components/TextControl'
 import textControlTester from "./components/textControlTester";
 import CheckboxGroupControl from "./components/CheckboxGroupControl";
-import CheckboxGroupControlTester from "./components/CheckboxGroupControlTester";
+import CheckboxGroupControlTester from "./components/checkboxGroupControlTester";
+import countriesControlTester from "./components/countriesControlTester";
+import CountriesControl from "./components/CountriesControl";
 
 const initialData = {
   user: {
@@ -27,12 +29,13 @@ const initialData = {
 function App() {
   const [data, setData] = useState(initialData);
   const [errors, setErrors] = useState();
-  console.log("data", data.item.s01);
+  // console.log("data", data.item.s01);
   // console.log("errors", errors);
   const renderers = [
     ...vanillaRenderers,
     { tester: textControlTester, renderer: TextControl },
     { tester: CheckboxGroupControlTester, renderer: CheckboxGroupControl },
+    { tester: countriesControlTester, renderer: CountriesControl },
   ];
 
   return (
@@ -44,6 +47,7 @@ function App() {
         renderers={renderers}
         cells={vanillaCells}
         onChange={({ data, errors }) => {setData(data); setErrors(errors as any)}}
+        readonly={true}
       />
     </div>
   )

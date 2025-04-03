@@ -1,10 +1,10 @@
-import { RendererProps } from "@jsonforms/core";
+import { ControlProps } from "@jsonforms/core";
 import { withJsonFormsControlProps } from "@jsonforms/react";
 
-const CheckboxGroup = (props: RendererProps) => {
-    const { path, schema, handleChange, data: value } = props as any;
+const CheckboxGroup = (props: ControlProps) => {
+    const { path, schema, handleChange, data: value } = props;
     const { title, items } = schema;
-    const options: string[] = items.enum;
+    const options: string[] = items?.enum ;
     const selectedValues: string[] = value || [];
 
     const handleCheckboxChange = (value: string) => {
