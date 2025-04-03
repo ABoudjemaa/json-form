@@ -1,10 +1,17 @@
 import { ControlProps } from "@jsonforms/core";
 import { withJsonFormsControlProps } from "@jsonforms/react";
 
+interface schemaType {
+    title: string;
+    items: {
+        enum: string[];
+    };
+}
+
 const CheckboxGroup = (props: ControlProps) => {
     const { path, schema, handleChange, data: value } = props;
-    const { title, items } = schema;
-    const options: string[] = items?.enum ;
+    const { title, items } = schema as schemaType;
+    const options: string[] = items?.enum;
     const selectedValues: string[] = value || [];
 
     const handleCheckboxChange = (value: string) => {
@@ -30,7 +37,7 @@ const CheckboxGroup = (props: ControlProps) => {
                             id={`checkbox-${option}`}
                             checked={selectedValues.includes(option)}
                             onChange={() => handleCheckboxChange(option)}
-                            className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                            className="h-4 w-4 border-gray-300 rounded"
                         />
                         <label
                             htmlFor={`checkbox-${option}`}

@@ -3,12 +3,12 @@ import { JsonForms } from "@jsonforms/react"
 import { vanillaCells, vanillaRenderers } from '@jsonforms/vanilla-renderers';
 import schema from './schema.json'
 import uischema from './uischema.json'
-import TextControl from './components/TextControl'
-import textControlTester from "./components/textControlTester";
-import CheckboxGroupControl from "./components/CheckboxGroupControl";
-import CheckboxGroupControlTester from "./components/checkboxGroupControlTester";
-import countriesControlTester from "./components/countriesControlTester";
-import CountriesControl from "./components/CountriesControl";
+import TextControl from './components/json-form/TextControl'
+import textControlTester from "./components/json-form/testers/textControlTester";
+import CheckboxGroupControl from "./components/json-form/CheckboxGroupControl";
+import CheckboxGroupControlTester from "./components/json-form/testers/checkboxGroupControlTester";
+import countriesControlTester from "./components/json-form/testers/countriesControlTester";
+import CountriesControl from "./components/json-form/CountriesControl";
 
 const initialData = {
   user: {
