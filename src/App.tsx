@@ -30,7 +30,7 @@ function App() {
   const [data, setData] = useState(initialData);
   const [errors, setErrors] = useState();
   // console.log("data", data.item.s01);
-  // console.log("errors", errors);
+  console.log("errors", errors);
   const renderers = [
     ...vanillaRenderers,
     { tester: textControlTester, renderer: TextControl },
