@@ -4,7 +4,7 @@ import CheckboxItem from "./CheckboxItem";
 import { ControlProps } from "@jsonforms/core";
 import { SchemaType } from "./types";
 
-const CheckboxControl = (props: ControlProps) => {
+const CheckboxGroupControl = (props: ControlProps) => {
     const { path, schema, handleChange, data: value } = props;
     const { title, items } = schema as SchemaType;
     const options: string[] = items?.enum || [];
@@ -31,4 +31,4 @@ const CheckboxControl = (props: ControlProps) => {
     );
   };
   
-  export default withJsonFormsControlProps(CheckboxControl);
+  export default withJsonFormsControlProps(CheckboxGroupControl);

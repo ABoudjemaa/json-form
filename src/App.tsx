@@ -5,10 +5,10 @@ import schema from './schema.json'
 import uischema from './uischema.json'
 import TextControl from './components/json-form/TextControl'
 import textControlTester from "./components/json-form/testers/textControlTester";
-import CheckboxGroupControl from "./components/json-form/CheckboxGroupControl";
 import CheckboxGroupControlTester from "./components/json-form/testers/checkboxGroupControlTester";
 import countriesControlTester from "./components/json-form/testers/countriesControlTester";
-import CountriesControl from "./components/json-form/contries-section/CountriesControl";
+import CountriesControl from "./components/json-form/countries-section/CountriesControl";
+import CheckboxGroupControl from "./components/json-form/checkbox-section/CheckboxGroupControl";
 
 const initialData = {
   user: {
