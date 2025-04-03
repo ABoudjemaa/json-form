@@ -4,11 +4,13 @@ import { CountryPercentageItem } from "./types";
 export const CountryItemDisplay = ({
     item,
     index,
+    enabled,
     onPercentChange,
     onRemove,
   }: {
     item: CountryPercentageItem;
     index: number;
+    enabled: boolean;
     onPercentChange: (index: number, value: string) => void;
     onRemove: (index: number) => void;
   }) => (
@@ -24,9 +26,10 @@ export const CountryItemDisplay = ({
         onChange={(e) => onPercentChange(index, e.target.value)}
       />
       <button
+        disabled={!enabled}
         type="button"
         onClick={() => onRemove(index)}
-        className="w-1/6 px-4 py-2 bg-red-600 hover:bg-red-800 text-white rounded-md flex items-center justify-center"
+        className={`${!enabled ? "":" hover:bg-red-800 "}` + "w-1/6 px-4 py-2 bg-red-600  text-white rounded-md flex items-center justify-center"}
       >
         Delete
       </button>

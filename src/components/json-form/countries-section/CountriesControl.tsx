@@ -87,6 +87,7 @@ const CountriesControl = (props: ControlProps) => {
                             index={index}
                             onPercentChange={handlePercentChange}
                             onRemove={handleRemoveCountry}
+                            enabled={enabled}
                         />
                     ))}
                 </div>

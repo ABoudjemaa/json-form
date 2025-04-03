@@ -1,7 +1,3 @@
-
-
-
-
 const CountryInput = ({
   countries,
   newCountry,
@@ -47,7 +43,7 @@ const CountryInput = ({
     <button
       type="button"
       onClick={onAdd}
-      className="w-1/6 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2"
+      className={`${!enabled ? "":" hover:bg-gray-800 "}` +"w-1/6 px-4 py-2 bg-black text-white rounded-md  focus:outline-none focus:ring-2"}
     >
       Add
     </button>
