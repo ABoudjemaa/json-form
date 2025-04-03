@@ -2,7 +2,7 @@ import { ControlProps } from '@jsonforms/core';
 import { withJsonFormsControlProps } from '@jsonforms/react';
 
 const CustomTextRenderer = (
-  { label, path, schema, uischema, handleChange, data: value }: ControlProps
+  { label, path, schema, uischema, handleChange, data: value , enabled}: ControlProps
 ) => {
   const { description } = schema;
 
@@ -22,12 +22,14 @@ const CustomTextRenderer = (
             <textarea
               className="w-full p-2 border border-gray-300 rounded-md"
               value={value}
+              disabled={!enabled}
               onChange={(e) => handleChange(path, e.target.value)}
             /> :
             <input
               type="text"
               className="w-full p-2 border border-gray-300 rounded-md"
               value={value}
+              disabled={!enabled}
               onChange={(e) => handleChange(path, e.target.value)}
             />
           }

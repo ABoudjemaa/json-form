@@ -14,6 +14,7 @@ const CountriesControl = (props: ControlProps) => {
         handleChange,
         required,
         rootSchema,
+        enabled
     } = props;
 
     const countries: string[] = rootSchema.definitions?.countries?.enum || [];
@@ -74,6 +75,7 @@ const CountriesControl = (props: ControlProps) => {
                 onCountryChange={setNewCountry}
                 onPercentChange={setNewPercent}
                 onAdd={handleAddCountry}
+                enabled={enabled}
             />
 
             {data.length > 0 && (

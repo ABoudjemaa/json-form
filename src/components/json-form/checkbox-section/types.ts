@@ -8,5 +8,6 @@ export interface SchemaType {
 export interface CheckboxItemProps {
     option: string;
     checked: boolean;
+    enabled: boolean;
     onChange: (value: string) => void;
 }

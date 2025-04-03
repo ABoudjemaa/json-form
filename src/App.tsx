@@ -11,12 +11,12 @@ import countriesControlTester from "./components/json-form/testers/countriesCont
 import CountriesControl from "./components/json-form/countries-section/CountriesControl";
 import CheckboxGroupControl from "./components/json-form/checkbox-section/CheckboxGroupControl";
 
-
 function App() {
   const [data, setData] = useState(initialData);
   const [errors, setErrors] = useState();
-  // console.log("data", data.item.s01);
-  // console.log("errors", errors);
+  const [isReadonly, setIsReadonly] = useState(true);
+  console.log("isReadOnly ",isReadonly);
+  
   const renderers = [
     ...vanillaRenderers,
     { tester: textControlTester, renderer: TextControl },
@@ -24,8 +24,21 @@ function App() {
     { tester: countriesControlTester, renderer: CountriesControl },
   ];
 
+  const toggleReadonly = () => {
+    setIsReadonly(!isReadonly);
+  };
+
   return (
     <div className='max-w-2xl mx-4 md:m-auto md:mt-10'>
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={toggleReadonly}
+          className="px-4 py-2 bg-black text-white rounded"
+        >
+          {isReadonly ? "Edit Form" : "Readonly Mode"}
+        </button>
+      </div>
+      
       <JsonForms
         schema={schema}
         uischema={uischema}
@@ -33,7 +46,7 @@ function App() {
         renderers={renderers}
         cells={vanillaCells}
         onChange={({ data, errors }) => {setData(data); setErrors(errors as any)}}
-        readonly={true}
+        readonly={isReadonly}
       />
     </div>
   )
