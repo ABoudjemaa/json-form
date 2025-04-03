@@ -1,8 +1,9 @@
 import { ControlProps } from '@jsonforms/core';
 import { withJsonFormsControlProps } from '@jsonforms/react';
+import ErrorDescription from './ErrorDescription';
 
 const CustomTextRenderer = (
-  { label, path, schema, uischema, handleChange, data: value , enabled}: ControlProps
+  { label, path, schema, uischema, handleChange, data: value, enabled }: ControlProps
 ) => {
   const { description } = schema;
 
@@ -19,12 +20,15 @@ const CustomTextRenderer = (
         </div>
         <div>
           {isMultiLine ?
-            <textarea
-              className="w-full p-2 border border-gray-300 rounded-md"
-              value={value}
-              disabled={!enabled}
-              onChange={(e) => handleChange(path, e.target.value)}
-            /> :
+            <>
+              <textarea
+                className="w-full p-2 border border-gray-300 rounded-md"
+                value={value}
+                disabled={!enabled}
+                onChange={(e) => handleChange(path, e.target.value)}
+              />
+              {/* <ErrorDescription error="Invalid " /> */}
+            </> :
             <input
               type="text"
               className="w-full p-2 border border-gray-300 rounded-md"
