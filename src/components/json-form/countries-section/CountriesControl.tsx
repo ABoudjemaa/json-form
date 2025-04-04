@@ -1,10 +1,11 @@
 import { ControlProps } from '@jsonforms/core';
 import { withJsonFormsControlProps } from '@jsonforms/react';
 import { useState } from 'react';
+import { CountryPercentageItem } from './types';
 import CountryInput from './CountryInput';
 import CountryItemDisplay from './CountryItemDisplay';
 import TotalPercentageDisplay from './TotalPercentageDisplay';
-import { CountryPercentageItem } from './types';
+import ErrorDescription from '../ErrorDescription';
 
 const CountriesControl = (props: ControlProps) => {
     const {
@@ -20,12 +21,17 @@ const CountriesControl = (props: ControlProps) => {
     const countries: string[] = rootSchema.definitions?.countries?.enum || [];
     const [newCountry, setNewCountry] = useState('');
     const [newPercent, setNewPercent] = useState('');
+    const [error, setError] = useState<string | undefined>();
 
     const handleAddCountry = () => {
         if (!newCountry || !newPercent || newCountry === "?Unknown") return;
 
         const percentValue = parseFloat(newPercent);
         if (isNaN(percentValue)) return;
+        if (percentValue <= 0 || percentValue > 100) {
+            setError('Percentage must be between 1 and 100.');
+            return;
+        }
 
         const updatedData = [...data, {
             country: newCountry,
@@ -55,7 +61,7 @@ const CountriesControl = (props: ControlProps) => {
         handleChange(path, updatedData);
     };
 
-   
+
 
     return (
         <div className="space-y-4">
@@ -77,6 +83,8 @@ const CountriesControl = (props: ControlProps) => {
                 onAdd={handleAddCountry}
                 enabled={enabled}
             />
+
+            {error && <ErrorDescription error={error} />}
 
             {data.length > 0 && (
                 <div className="border rounded-md divide-y">

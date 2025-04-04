@@ -15,7 +15,7 @@ function App() {
   const [data, setData] = useState(initialData);
   const [errors, setErrors] = useState();
   const [isReadonly, setIsReadonly] = useState(true);
-  console.log("isReadOnly ",isReadonly);
+  // console.log(data);
   
   const renderers = [
     ...vanillaRenderers,
@@ -29,7 +29,7 @@ function App() {
   };
 
   return (
-    <div className='max-w-2xl mx-4 md:m-auto md:mt-10'>
+    <div className='max-w-2xl mx-4 md:m-auto md:my-10'>
       <div className="flex justify-end mb-4">
         <button
           onClick={toggleReadonly}

@@ -1,13 +1,43 @@
 import { ControlProps } from '@jsonforms/core';
 import { withJsonFormsControlProps } from '@jsonforms/react';
 import ErrorDescription from './ErrorDescription';
+import { useState } from 'react';
 
 const CustomTextRenderer = (
-  { label, path, schema, uischema, handleChange, data: value, enabled }: ControlProps
+  props: ControlProps
 ) => {
+  const { label, path, schema, uischema, handleChange, data: value, enabled} = props;
   const { description } = schema;
+  const [error, setError] = useState<string | undefined>();
 
   const isMultiLine = uischema.options?.multi as boolean;
+
+  const onChangeText = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const newValue = event.target.value;
+    handleChange(path, newValue);
+    if (newValue.length > 50) {
+      setError("Maximum length is 50 characters.");
+    } else if (newValue.length < 2) {
+      setError("Minimum length is 2 characters.");
+    }
+    else {
+      setError(undefined);
+    }
+  }
+
+  const onChangeTextarea = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const newValue = event.target.value;
+    handleChange(path, newValue);
+    if (newValue.length > 300) {
+      setError("Maximum length is 300 characters.");
+    } else if (newValue.length < 10) {
+      setError("Minimum length is 10 characters.");
+    }
+    else {
+      setError(undefined);
+    }
+  }
+
 
   return (
     <div className="mb-4">
@@ -25,17 +55,20 @@ const CustomTextRenderer = (
                 className="w-full p-2 border border-gray-300 rounded-md"
                 value={value}
                 disabled={!enabled}
-                onChange={(e) => handleChange(path, e.target.value)}
+                onChange={(e) => onChangeTextarea(e)}
               />
-              {/* <ErrorDescription error="Invalid " /> */}
+              {error && <ErrorDescription error={error} />}
             </> :
-            <input
-              type="text"
-              className="w-full p-2 border border-gray-300 rounded-md"
-              value={value}
-              disabled={!enabled}
-              onChange={(e) => handleChange(path, e.target.value)}
-            />
+            <>
+              <input
+                type="text"
+                className="w-full p-2 border border-gray-300 rounded-md"
+                value={value}
+                disabled={!enabled}
+                onChange={(e) => onChangeText(e)}
+              />
+              {error && <ErrorDescription error={error} />}
+            </>
           }
         </div>
       </div>
