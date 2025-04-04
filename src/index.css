@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 
-.group-layout:has(:first-child legend){
-  @apply p-4 border border-gray-300 rounded-md shadow-sm bg-white;
+.group-layout > .group-layout-item{
+  @apply p-4 border border-gray-300 rounded-md shadow-sm bg-white mb-4;
 }
 
 .group-layout > legend{
