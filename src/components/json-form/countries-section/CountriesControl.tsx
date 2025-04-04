@@ -24,11 +24,14 @@ const CountriesControl = (props: ControlProps) => {
     const [error, setError] = useState<string | undefined>();
 
     const handleAddCountry = () => {
-        if (!newCountry || !newPercent || newCountry === "?Unknown") return;
+        if (!newCountry || !newPercent || newCountry === "?Unknown"){
+            setError('Please select a country.');
+            return;
+        }
 
         const percentValue = parseFloat(newPercent);
         if (isNaN(percentValue)) return;
-        if (percentValue <= 0 || percentValue > 100) {
+        if (percentValue < 1 || percentValue > 100) {
             setError('Percentage must be between 1 and 100.');
             return;
         }
@@ -46,18 +49,6 @@ const CountriesControl = (props: ControlProps) => {
     const handleRemoveCountry = (index: number) => {
         const updatedData = [...data];
         updatedData.splice(index, 1);
-        handleChange(path, updatedData);
-    };
-
-    const handlePercentChange = (index: number, value: string) => {
-        const percentValue = parseFloat(value);
-        if (isNaN(percentValue)) return;
-
-        const updatedData = [...data];
-        updatedData[index] = {
-            ...updatedData[index],
-            percent: percentValue
-        };
         handleChange(path, updatedData);
     };
 
@@ -93,7 +84,6 @@ const CountriesControl = (props: ControlProps) => {
                             key={index}
                             item={item}
                             index={index}
-                            onPercentChange={handlePercentChange}
                             onRemove={handleRemoveCountry}
                             enabled={enabled}
                         />

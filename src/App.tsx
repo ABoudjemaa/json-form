@@ -15,7 +15,7 @@ function App() {
   const [data, setData] = useState(initialData);
   const [errors, setErrors] = useState();
   const [isReadonly, setIsReadonly] = useState(true);
-  // console.log(data);
+  console.log(data);
   
   const renderers = [
     ...vanillaRenderers,
