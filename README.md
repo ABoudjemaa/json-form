@@ -9,3 +9,4 @@
 - [x] style correctly the percentage validation
 - [x] separate the tow parts of the form
 - [ ] separate the textControl (textarea and text)
+- [x] add validator functions

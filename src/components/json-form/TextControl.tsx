@@ -2,6 +2,7 @@ import { ControlProps } from '@jsonforms/core';
 import { withJsonFormsControlProps } from '@jsonforms/react';
 import ErrorDescription from './ErrorDescription';
 import { useState } from 'react';
+import { validateText, validateTextarea } from '../../utils/validators';
 
 const CustomTextRenderer = (
   props: ControlProps
@@ -12,31 +13,17 @@ const CustomTextRenderer = (
 
   const isMultiLine = uischema.options?.multi as boolean;
 
-  const onChangeText = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     handleChange(path, newValue);
-    if (newValue.length > 50) {
-      setError("Maximum length is 50 characters.");
-    } else if (newValue.length < 2) {
-      setError("Minimum length is 2 characters.");
-    }
-    else {
-      setError(undefined);
-    }
-  }
-
-  const onChangeTextarea = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    setError(validateText(newValue));
+  };
+  
+  const onChangeTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = event.target.value;
     handleChange(path, newValue);
-    if (newValue.length > 300) {
-      setError("Maximum length is 300 characters.");
-    } else if (newValue.length < 10) {
-      setError("Minimum length is 10 characters.");
-    }
-    else {
-      setError(undefined);
-    }
-  }
+    setError(validateTextarea(newValue));
+  };
 
 
   return (

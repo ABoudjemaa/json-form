@@ -5,6 +5,7 @@ import { ControlProps } from "@jsonforms/core";
 import { SchemaType } from "./types";
 import ErrorDescription from "../ErrorDescription";
 import { useState } from "react";
+import { validateCheckboxGroup } from "../../../utils/validators";
 
 const CheckboxGroupControl = (props: ControlProps) => {
   const { path, schema, handleChange, data: value, enabled } = props;
@@ -18,12 +19,7 @@ const CheckboxGroupControl = (props: ControlProps) => {
       ? selectedValues.filter(v => v !== value)
       : [...selectedValues, value];
     handleChange(path, newValues);
-    if (newValues.length == 0) {
-      setError("At least one option must be selected.");
-    }
-    else {
-      setError(undefined);
-    }
+    setError(validateCheckboxGroup(newValues));
   };
 
   return (

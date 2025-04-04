@@ -6,6 +6,7 @@ import CountryInput from './CountryInput';
 import CountryItemDisplay from './CountryItemDisplay';
 import TotalPercentageDisplay from './TotalPercentageDisplay';
 import ErrorDescription from '../ErrorDescription';
+import { validateCountryPercent } from '../../../utils/validators';
 
 const CountriesControl = (props: ControlProps) => {
     const {
@@ -24,27 +25,22 @@ const CountriesControl = (props: ControlProps) => {
     const [error, setError] = useState<string | undefined>();
 
     const handleAddCountry = () => {
-        if (!newCountry || !newPercent || newCountry === "?Unknown"){
-            setError('Please select a country.');
-            return;
+        const validationError = validateCountryPercent(newCountry, newPercent);
+        if (validationError) {
+          setError(validationError);
+          return;
         }
-
-        const percentValue = parseFloat(newPercent);
-        if (isNaN(percentValue)) return;
-        if (percentValue < 1 || percentValue > 100) {
-            setError('Percentage must be between 1 and 100.');
-            return;
-        }
-
+      
         const updatedData = [...data, {
-            country: newCountry,
-            percent: percentValue
+          country: newCountry,
+          percent: parseFloat(newPercent)
         }];
-
+      
         handleChange(path, updatedData);
         setNewCountry('');
         setNewPercent('');
-    };
+        setError(undefined);
+      };
 
     const handleRemoveCountry = (index: number) => {
         const updatedData = [...data];
