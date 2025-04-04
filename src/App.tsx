@@ -66,7 +66,7 @@ function App() {
 
 
   return (
-    <div className='max-w-2xl mx-4 md:m-auto my-10'>
+    <div className='max-w-2xl mx-4 md:mx-auto my-10'>
       <div className="flex justify-end mb-4">
         <button
           onClick={toggleReadonly}
