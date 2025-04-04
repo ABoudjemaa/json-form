@@ -48,8 +48,6 @@ const CountriesControl = (props: ControlProps) => {
         handleChange(path, updatedData);
     };
 
-
-
     return (
         <div className="space-y-4">
             <div className="text-sm font-medium text-gray-700">

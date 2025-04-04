@@ -8,7 +8,7 @@ import { useState } from "react";
 import { validateCheckboxGroup } from "../../../utils/validators";
 
 const CheckboxGroupControl = (props: ControlProps) => {
-  const { path, schema, handleChange, data: value, enabled } = props;
+  const { path, schema, handleChange, data: value, enabled} = props;
   const { title, items } = schema as SchemaType;
   const options: string[] = items?.enum || [];
   const selectedValues: string[] = value || [];
